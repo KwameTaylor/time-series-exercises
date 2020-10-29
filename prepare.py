@@ -38,4 +38,17 @@ def prepare_opsd_germany(df):
     This function will take in a df and return a df.
     Prepares the OPS Germany data for exploration.
     '''
+    # Convert date column to datetime format
+    df.Date = pd.to_datetime(df.Date, format='%Y-%m-%d')
+
+    # Set the index to be the datetime variable
+    df = df.set_index('Date').sort_index()
+
+    # Add month and year columns
+    df['month'] = df.index.month
+    df['year'] = df.index.year
+
+    # Fill missing values
+    df = df.fillna(0)
+    
     return df
