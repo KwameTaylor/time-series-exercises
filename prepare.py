@@ -21,7 +21,7 @@ def prepare_stores_items(df):
     # Convert date column to datetime format
     df.sale_date = pd.to_datetime(df.sale_date, format='%a, %d %b %Y %H:%M:%S %Z')
 
-    # Set the index to be the datetime variable
+    # Set the index to be the datetime variable and sort by date
     df = df.set_index('sale_date').sort_index()
 
     # Add 'month' and 'day of week' columns
@@ -50,5 +50,5 @@ def prepare_opsd_germany(df):
 
     # Fill missing values
     df = df.fillna(0)
-    
+
     return df
